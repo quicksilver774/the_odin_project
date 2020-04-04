@@ -6,19 +6,71 @@ function computerPlay(){
 const hand = Math.random();
 
   if (hand <= 0.3){
-    return "Rock";
+    return "rock";
   }
-  else if (hand <= 0.6) 
-    return "Paper";	  	
+  else if (hand <= 0.6){
+    return "paper";	  	
   }
   else {
-    return "Scissors";
+    return "scissors";
   }
 
 }
 
-computerPlay();
 
+
+function playRound(playerSelection, computerSelection){
+
+
+ playerSelection.toLowerCase();
+  if ((playerSelection == "rock" && computerSelection == "scissors")
+      || (playerSelection == "paper" && computerSelection == "rock")
+      ||  (playerSelection == "scissors" && computerSelection == "paper")){
+    return "player wins!!";
+    } 
+    else if ((computerSelection == "rock" &&  playerSelection == "scissors")
+      || (computerSelection == "paper" &&  playerSelection == "rock")
+      ||  (computerSelection == "scissors" &&  playerSelection == "paper")){
+    return "computer wins!!";  
+	}
+	else if ( computerSelection == playerSelection){
+		return "draw!!";
+	}
+} 
+
+
+const computerSelection = computerPlay();
+
+
+function game(){
+	let playerSelection = window.prompt("Choose your weapon");
+	let playerScoreBoard = [];
+	let computerScoreBoard = [];
+	let drawboard = [];
+	
+	for (var i = 0; i < 6; i++) {
+		let result = playRound(playerSelection, computerSelection);
+		
+		if (result == "computer wins!!"){
+		computerScoreBoard.push(result);
+		}
+		else if (result == "player wins!!"){
+		playerScoreBoard.push(result);
+		}
+		else if (result == "draw"){
+		drawboard.push(result);
+		}
+	}
+
+	if (playerScoreBoard.length > computerScoreBoard.length){
+		console.log("The Winner is Player!!");
+	}
+	else if (computerScoreBoard.length > playerScoreBoard.length){
+		console.log("Computer Wins the Match!!")
+	}
+}
+
+game();
 </script>
 
 
